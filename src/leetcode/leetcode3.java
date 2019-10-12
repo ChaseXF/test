@@ -4,27 +4,31 @@ import java.lang.reflect.Array;
 
 public class leetcode3 {
     public static void main(String[] args) {
-        String str="pwwkew";
+        String str="sdvasdfadadadcaxzvasd";
        System.out.println(lengthOfLongestSubstring(str));
     }
+        static int lengthOfLongestSubstring(String s) {
+            String[] arr=s.split("",s.length());
+            int len=0,maxLen=0,start=0;
 
-    static int lengthOfLongestSubstring(String s) {
-        String[] arr=s.split("",s.length());
-        int count=0,max=0;
-
-        for(int i=0;i<arr.length-1;i++){
-
-
-
-
-            if(!arr[i].equals(arr[i + 1]))
-                count++;
-            if(count>max)
-                max=count;
-            if(arr[i].equals(arr[i + 1]))
-                count=0;
+            for(int i=1;i<arr.length;i++){
+                if(join(start,i,arr))
+                    len++;
+                else
+                    start=i;
+                if(len>maxLen)
+                    maxLen=len;
+            }
+            return maxLen;
         }
-        return max+1;
-    }
+
+        static boolean join(int start, int end, String[] arr){
+            for(int i=start;i<end;i++){
+                if(arr[i].equals(arr[end]))
+                return false;
+            }
+            return true;
+        }
 
 }
+
